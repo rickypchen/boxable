@@ -8,6 +8,7 @@ var Item = React.createClass({
         <div class="caption">
           <h3>{this.props.name}</h3>
           <span>${this.props.price}</span>
+          <p>{this.props.description}</p>
           <p>
             <a href="#" className="btn btn-primary" role="button">Add To Cart</a>
             <a href="#" className="btn btn-default" role="button">Remove From Cart</a></p>
