@@ -21,13 +21,24 @@ var store = React.createClass({
   render: function(){
     console.log(this.state.items)
     return (
-        <ul>{
+      <div className="store">
+        <div className="shelf">{
           this.state.items.map(function(item) {
             return (
-            <Item>{item.name}</Item>
+             <Item key={item.id}>
+                {item.name}
+                {item.price}
+                <img src={item.img_name} />
+             </Item>
             )
         })
-      }</ul>
+      }
+        </div>
+        <div className="cart"> {
+          <Cart />
+        }
+        </div>
+        </div>
       );
   }
 });

@@ -1,7 +1,7 @@
 var Item = React.createClass({
   render: function(){
     return (
-      <li>{this.props.children}</li>
+      <div className = "item">{this.props.children}</div>
       )
   }
 })
