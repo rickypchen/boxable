@@ -1,7 +1,21 @@
 var Cart = React.createClass({
-  render: function(){
+	render: function(){
     return (
-      <div className = "cart">Hello Cart</div>
+      <div className = "cart">
+      	<p>
+      		Your have no items selected
+      	</p>
+      	<p> {
+      		this.props.cart.map(function(item){
+      			return (
+      				<CartItem> {item}</CartItem>
+      				)
+      		})
+      	}</p>
+				
+      	<button type="button" class="btn btn-default">Checkout</button>
+      </div>
       )
   }
 })
+
