@@ -13,13 +13,16 @@ var store = React.createClass({
     })
   },
   getInitialState: function(){
-    return ({quantity: 0, items: []})
+    return ({quantity: 0, items: [], cart: ['happy','day']})
   },
   componentDidMount: function(){
     this.loadStore();
   },
   render: function(){
+    console.log(this.state)
     console.log(this.state.items)
+    console.log(this.state.quantity)
+    console.log(this.state.cart)
     return (
       <div className="store">
         <div className="shelf row">{
@@ -30,11 +33,11 @@ var store = React.createClass({
         })
       }
         </div>
-        <div className="cart"> {
-          <Cart />
-        }
+        <div className="cart"> 
+             <Cart cart={this.state.cart} />
+             
         </div>
-        </div>
+      </div>
       );
   }
 });
