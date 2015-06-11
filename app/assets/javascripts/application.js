@@ -17,3 +17,9 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+
+
+var hideCart = function() {
+	console.log('poop')
+	$('.cart').toggle(400);
+};

@@ -1,0 +1,31 @@
+.itemImage.thumbnail {
+  height: 200px;
+}
+
+.itemImage.thumbnail img {
+  height: 100%;
+}
+
+.view-cart-btn {
+	float:right;
+	margin-right:0.5em;
+}
+
+.cart {
+	height:100%;
+	position: fixed;
+	width: 18em;
+	z-index: 1001;
+	right:0px;
+	top:60px;
+	background-color: #EEE;
+	text-align: center;
+}
+
+.inventory {
+	height: 80%;
+}
+
+.checkout-container {
+	height: 15%;
+}
