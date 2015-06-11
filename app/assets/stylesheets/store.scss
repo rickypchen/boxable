@@ -2,18 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.store {
-  border: 1px solid red;
-}
-
-.item {
-  border: 1px solid blue;
-}
-
-.itemImage {
+.itemImage.thumbnail {
   height: 200px;
 }
-.itemImage img {
-  border: 1px solid green;
+
+.itemImage.thumbnail img {
   height: 100%;
 }
