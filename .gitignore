@@ -10,7 +10,7 @@
 /tmp/
 log
 */[Ll]ogs/*
-/logs
+log/development.log
 /Logs
 ## Specific to RubyMotion:
 .dat*
