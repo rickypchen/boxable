@@ -25,11 +25,7 @@ var store = React.createClass({
         <div className="shelf">{
           this.state.items.map(function(item) {
             return (
-             <Item key={item.id}>
-                {item.name}
-                {item.price}
-                <img src={item.img_name} />
-             </Item>
+             <Item key={item.id} name={item.name} price={item.price} image={item.img_name} />
             )
         })
       }
