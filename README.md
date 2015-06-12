@@ -6,6 +6,7 @@ Follow these instructions to get up and running (note: you need to have ruby and
 
 In Terminal
 > git clone https://github.com/rickypchen/boxable.git
+>
 > bundle install
 > rake db:setup
 > rails s
