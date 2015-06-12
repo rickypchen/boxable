@@ -14,20 +14,17 @@ var store = React.createClass({
   },
   addToCart: function(itemName){
     var items = this.state.items;
-
-
-    var index = items.map(function(item) {
-      return item.name; }).indexOf(itemName);
+    var index = items.map(function(item) {return item.name; }).indexOf(itemName);
 
     if (this.state.cart[itemName]) {
       this.state.cart[itemName]["quantity"] += 1;
+      console.log(this.state.cart)
     } else {
       this.state.cart[itemName] = {};
-      this.state.cart[itemName]["object"] = items[index];
+      this.state.cart[itemName]["itemInfo"] = items[index];
       this.state.cart[itemName]["quantity"] = 1;
     }
-
-    console.log(this.state.cart);
+    this.setState({});
     
   },
   removeFromCart: function(itemName){
@@ -39,6 +36,7 @@ var store = React.createClass({
         this.state.cart[itemName]["quantity"] -= 1;
       }
     }
+    this.setState({})
     console.log(this.state.cart);
   },
   getInitialState: function(){
@@ -48,10 +46,10 @@ var store = React.createClass({
     this.loadStore();
   },
   render: function(){
-    console.log(this.state)
-    console.log(this.state.items)
-    console.log(this.state.quantity)
-    console.log(this.state.cart)
+    // console.log(this.state)
+    // console.log(this.state.items)
+    // console.log(this.state.quantity)
+    // console.log(this.state.cart)
     var self = this;
     return (
       <div className="store">
@@ -64,8 +62,7 @@ var store = React.createClass({
       }
         </div>
         <div className="cart">
-             <Cart cart={this.state.cart} />
-
+          <Cart cart={this.state.cart} />
         </div>
       </div>
       );
