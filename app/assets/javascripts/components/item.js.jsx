@@ -1,8 +1,10 @@
 var Item = React.createClass({
-  addItem: function(){
+  addItem: function(event){
+    event.preventDefault();
     this.props.storeSelf.addToCart(this.props.name);
   },
-  removeItem: function(){
+  removeItem: function(event){
+    event.preventDefault();
     this.props.storeSelf.removeFromCart(this.props.name);
 
   },

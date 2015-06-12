@@ -21,17 +21,19 @@ var store = React.createClass({
   },
   addToCart: function(itemName){
     var items = this.state.items;
+    var index = items.map(function(item) {return item.name; }).indexOf(itemName);
 
-    var index = items.map(function(item) {
-      return item.name; }).indexOf(itemName);
 
     if (this.state.cart[itemName]) {
       this.state.cart[itemName]["quantity"] += 1;
+      console.log(this.state.cart)
     } else {
       this.state.cart[itemName] = {};
       this.state.cart[itemName]["itemInfo"] = items[index];
       this.state.cart[itemName]["quantity"] = 1;
     }
+    this.setState({});
+    
     $("#badge").html(this.countTotalQuantity());
   },
   removeFromCart: function(itemName){
@@ -43,6 +45,8 @@ var store = React.createClass({
         this.state.cart[itemName]["quantity"] -= 1;
       }
     }
+    this.setState({})
+    console.log(this.state.cart);
     $("#badge").html(this.countTotalQuantity());
   },
   getInitialState: function(){
@@ -64,8 +68,7 @@ var store = React.createClass({
       }
         </div>
         <div className="cart">
-             <Cart cart={this.state.cart} />
-
+          <Cart cart={this.state.cart} />
         </div>
       </div>
       );
