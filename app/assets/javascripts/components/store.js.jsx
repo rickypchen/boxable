@@ -12,9 +12,15 @@ var store = React.createClass({
       }
     })
   },
+  countTotalQuantity: function(){
+    var current_total = 0;
+    for (itemName in this.state.cart) {
+      current_total += this.state.cart[itemName]["quantity"];
+    }
+    return current_total;
+  },
   addToCart: function(itemName){
     var items = this.state.items;
-
 
     var index = items.map(function(item) {
       return item.name; }).indexOf(itemName);
@@ -23,12 +29,10 @@ var store = React.createClass({
       this.state.cart[itemName]["quantity"] += 1;
     } else {
       this.state.cart[itemName] = {};
-      this.state.cart[itemName]["object"] = items[index];
+      this.state.cart[itemName]["itemInfo"] = items[index];
       this.state.cart[itemName]["quantity"] = 1;
     }
-
-    console.log(this.state.cart);
-    
+    $("#badge").html(this.countTotalQuantity());
   },
   removeFromCart: function(itemName){
     var items = this.state.items;
@@ -39,7 +43,7 @@ var store = React.createClass({
         this.state.cart[itemName]["quantity"] -= 1;
       }
     }
-    console.log(this.state.cart);
+    $("#badge").html(this.countTotalQuantity());
   },
   getInitialState: function(){
     return ({quantity: 0, items: [], cart: {}})
@@ -48,10 +52,6 @@ var store = React.createClass({
     this.loadStore();
   },
   render: function(){
-    console.log(this.state)
-    console.log(this.state.items)
-    console.log(this.state.quantity)
-    console.log(this.state.cart)
     var self = this;
     return (
       <div className="store">
