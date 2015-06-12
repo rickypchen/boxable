@@ -14,7 +14,7 @@
 .cart {
 	height:100%;
 	position: fixed;
-	width: 24em;
+	width: 20em;
 	z-index: 1001;
 	right:0px;
 	top:60px;
@@ -28,3 +28,13 @@
 .checkout-container {
 	height: 15%;
 }
+
+.checkout-btn {
+	width:16em;
+	margin:30px;
+}
+
+body {
+	padding-top: 100px;
+}
+

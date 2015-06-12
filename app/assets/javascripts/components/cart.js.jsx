@@ -21,7 +21,7 @@ var Cart = React.createClass({
             </ul>
 	      	</div>
 	      	<div className='chekcout-container'>
-	      	<button type="button" className="btn btn-default checkout-btn">Checkout</button>
+	      	<button type="button" className="btn btn-warning checkout-btn">Checkout</button>
 	        </div>
 	      </div>
 				
