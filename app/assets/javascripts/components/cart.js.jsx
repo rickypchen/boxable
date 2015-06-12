@@ -3,7 +3,9 @@ var Cart = React.createClass({
     var cartArray = [];
     var cart = this.props.cart
     for (var key in cart) {
-      cartArray.push(<CartItem price={cart[key]["itemInfo"]["price"]} name={cart[key]["itemInfo"]["name"]} quantity={cart[key]["quantity"]} />)
+      if (cart[key]["quantity"] > 0)
+        cartArray.push(<CartItem price={cart[key]["itemInfo"]["price"]} name={cart[key]["itemInfo"]["name"]} quantity={cart[key]["quantity"]} />)
+      
     }
     console.log(cartArray);
     console.log(this.props.cart);
