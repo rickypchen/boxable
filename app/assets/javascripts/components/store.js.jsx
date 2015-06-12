@@ -12,8 +12,37 @@ var store = React.createClass({
       }
     })
   },
+  addToCart: function(itemName){
+    var items = this.state.items;
+
+
+    var index = items.map(function(item) {
+      return item.name; }).indexOf(itemName);
+
+    if (this.state.cart[itemName]) {
+      this.state.cart[itemName]["quantity"] += 1;
+    } else {
+      this.state.cart[itemName] = {};
+      this.state.cart[itemName]["object"] = items[index];
+      this.state.cart[itemName]["quantity"] = 1;
+    }
+
+    console.log(this.state.cart);
+    
+  },
+  removeFromCart: function(itemName){
+    var items = this.state.items;
+    var index = items.map(function(item) {
+          return item.name; }).indexOf(itemName);
+    if (this.state.cart[itemName] !== null) {
+      if (this.state.cart[itemName]["quantity"] !== null && this.state.cart[itemName]["quantity"] > 0) {
+        this.state.cart[itemName]["quantity"] -= 1;
+      }
+    }
+    console.log(this.state.cart);
+  },
   getInitialState: function(){
-    return ({quantity: 0, items: [], cart: ['happy','day']})
+    return ({quantity: 0, items: [], cart: {}})
   },
   componentDidMount: function(){
     this.loadStore();
@@ -23,12 +52,13 @@ var store = React.createClass({
     console.log(this.state.items)
     console.log(this.state.quantity)
     console.log(this.state.cart)
+    var self = this;
     return (
       <div className="store">
         <div className="shelf row">{
           this.state.items.map(function(item) {
             return (
-             <Item key={item.id} name={item.name} price={item.price} image={item.img_name} description={item.description}/>
+             <Item storeSelf={self} key={item.id} name={item.name} price={item.price} image={item.img_name} description={item.description} />
             )
         })
       }
