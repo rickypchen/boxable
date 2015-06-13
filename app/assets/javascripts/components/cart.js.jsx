@@ -12,17 +12,20 @@ var Cart = React.createClass({
 
     return (
 	      <div className="cart" >
-	      	<div className="inventory">
-  	      	<p>
-  	      		Your have no items selected
-  	      	</p>
-            <ul>
-              {cartArray}
-            </ul>
-	      	</div>
-	      	<div className='chekcout-container'>
-	      	<button type="button" className="btn btn-warning checkout-btn">Checkout</button>
-	        </div>
+                  <div className="inventory">
+                    <h2>Cart Summary</h2>
+                    <table className="summary">
+                      <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                      </tr>
+                      {cartArray}
+                    </table>
+                  </div>
+	      	<div className='checkout-container'>
+	      	<button type="button" className="btn btn-warning" id="checkout-btn">Checkout</button>
+      	        </div>
 	      </div>
     );
   }

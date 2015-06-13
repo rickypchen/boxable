@@ -14,27 +14,35 @@
 .cart {
 	height:100%;
 	position: fixed;
-	width: 20em;
+	width: 30em;
 	z-index: 1001;
 	right:0px;
 	top:60px;
 	background-color: #EEE;
+	padding: 20px;
 }
 
 .inventory {
+	padding-top: 20px;
 	height: 80%;
 }
 
 .checkout-container {
 	height: 15%;
+	width: 100%;
 }
 
-.checkout-btn {
+#checkout-btn {
 	width:16em;
-	margin:30px;
+	display: block;
+	margin: 0 auto;
 }
 
 body {
 	padding-top: 100px;
 }
 
+table.summary {
+	width: 100%;
+	border-top: 1px solid black;
+}

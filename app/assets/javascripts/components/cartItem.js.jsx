@@ -1,12 +1,12 @@
 var CartItem = React.createClass({
 	render: function(){
     return (
-      	
-      <li className = "item">
-      	{this.props.name}
-      	{this.props.price}
-      	{this.props.quantity}
-      </li>
+
+      <tr className = "item">
+      	<td>{this.props.name}</td>
+      	<td>${this.props.price}</td>
+      	<td>{this.props.quantity}</td>
+      </tr>
 
       )
   }
