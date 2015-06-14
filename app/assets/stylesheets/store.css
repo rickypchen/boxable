@@ -98,8 +98,7 @@ table.summary {
 }
 
 
-.checkout-modal {
-	display: none;
+.sign-in-up-modal {
 	position: absolute;
 	width: 500px;
 	height: 500px;
@@ -107,8 +106,17 @@ table.summary {
 	left: 50%;
 	top: 50%;
 	z-index: 50000;
-	background: yellow;
+	background: rgb(200,200,200);
 	padding: 30px;
 
 }
 
+.sign-up-container {
+	display: none;
+}
+
+.exit-modal {
+	position: absolute;
+	right: 4px;
+	top: 4px;
+}

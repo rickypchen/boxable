@@ -3,12 +3,24 @@ var Cart = React.createClass({
     if (this.props.signedIn) {
       window.location.replace("http://localhost:3000/checkout");
     } else {
-      $(".modal-overlay").show();
-      $(".checkout-modal").slideDown();
-      $(".modal-overlay").on("click", function(){
-        $(".modal-overlay").hide();
-        $(".checkout-modal").hide();
+      $(".modal-overlay").slideDown();
+      $(".exit-modal").on("click", function(){
+        $(".modal-overlay").slideUp();
       });
+
+      $("#sign-up").on("click", function(e){
+        e.preventDefault();
+        $(".sign-in-container").hide();
+        $(".sign-up-container").show();
+      })
+
+      $("#sign-in").on("click", function(e){
+        e.preventDefault();
+        $(".sign-in-container").show();
+        $(".sign-up-container").hide();
+
+      })
+
     }
   },
   render: function(){
