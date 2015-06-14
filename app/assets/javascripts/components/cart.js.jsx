@@ -1,4 +1,16 @@
 var Cart = React.createClass({
+  checkoutClickHandler: function(){
+    if (this.props.signedIn) {
+      window.location.replace("http://localhost:3000/checkout");
+    } else {
+      $(".modal-overlay").show();
+      $(".checkout-modal").slideDown();
+      $(".modal-overlay").on("click", function(){
+        $(".modal-overlay").hide();
+        $(".checkout-modal").hide();
+      });
+    }
+  },
   render: function(){
     var cartArray = [];
     var cart = this.props.cart;
@@ -27,7 +39,7 @@ var Cart = React.createClass({
                   </div>
 	      	<div className='checkout-container'>
                   <h3>Total: ${totalCheckoutPrice.toFixed(2)}</h3>
-	      	<button type="button" className="btn btn-warning" id="checkout-btn">Checkout</button>
+	      	<button type="button" onClick={this.checkoutClickHandler} className="btn btn-warning" id="checkout-btn">Checkout</button>
       	        </div>
 	      </div>
     );

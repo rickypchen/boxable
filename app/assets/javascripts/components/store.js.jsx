@@ -56,6 +56,7 @@ var store = React.createClass({
     this.loadStore();
   },
   render: function(){
+
     var self = this;
     return (
       <div className="store">
@@ -68,7 +69,7 @@ var store = React.createClass({
       }
         </div>
         <div className="cart">
-          <Cart cart={this.state.cart} />
+          <Cart signedIn={this.props.signedIn} cart={this.state.cart} />
         </div>
       </div>
       );
