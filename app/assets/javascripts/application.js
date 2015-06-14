@@ -19,7 +19,6 @@
 //= require_tree .
 
 
-var hideCart = function() {
-	console.log('poop')
+var showCart = function() {
 	$('.cart').toggle(400);
 };
