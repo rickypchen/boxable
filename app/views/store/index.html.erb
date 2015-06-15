@@ -4,8 +4,7 @@
 <%= react_component ("store"), signedIn: user_signed_in %>
 <div class="modal-overlay">
 	<div class="sign-in-up-modal">
-		<a href="#" class="exit-modal">X</a>
-
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<div class="sign-up-container">
 			<h2>Sign Up To Checkout</h2>
 			<form class="sign-up-form">
@@ -48,4 +47,23 @@
 
 
 	</div>
+</div>
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">About Boxable</h3>
+      </div>
+      <div class="modal-body about-body">
+	<p>Nothing exhibits more care about someone you love than sending a care package.</p>
+	<p>Rather than dealing with the hassle of shopping, assembling and shipping, Boxable gives you the ability to customize your care package by selecting from a number of available items in our store, write a short note to be included in the box, and deliver the care package to friends and family. </p>
+	<p>We are proud of the goods and snacks that we carry in our online store - healthy, delicious, and homey. No more waiting in long lines at the post office or debating what to put in the box. Let Boxable handle the logistics, and we will let you express your love and care.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn checkout-button" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

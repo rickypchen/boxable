@@ -3,9 +3,9 @@ var Cart = React.createClass({
     if (this.props.signedIn) {
       window.location.replace("http://localhost:3000/checkout");
     } else {
-      $(".modal-overlay").slideDown();
-      $(".exit-modal").on("click", function(){
-        $(".modal-overlay").slideUp();
+      $(".modal-overlay").show();
+      $(".close").on("click", function(){
+        $(".modal-overlay").hide();
       });
 
       $("#sign-up").on("click", function(e){
