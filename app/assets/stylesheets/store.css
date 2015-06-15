@@ -23,8 +23,16 @@ span.icon-bar {
  font-size: 1.2em;
 }
 
-.btn.checkoutButton {
+.btn.checkout-button {
 	background-color: #ee6e73;
+	color: white;
+	height: 50px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.2em;
+}
+
+.btn.about-button {
+	background-color: #1e88e5;
 	color: white;
 	height: 50px;
 	font-family: 'Open Sans', sans-serif;
@@ -46,6 +54,12 @@ span.icon-bar {
 
 .itemImage.thumbnail img {
   height: 100%;
+}
+
+.caption {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 1.2em;
 }
 
 .view-cart-btn {
@@ -86,10 +100,9 @@ table.summary {
 	border-top: 1px solid black;
 }
 
-
 .modal-overlay {
 	display: none;
-	position: absolute;
+	position: fixed;
 	z-index: 40000;
 	top: 0;
 	width: 100%;
@@ -119,4 +132,23 @@ table.summary {
 	position: absolute;
 	right: 4px;
 	top: 4px;
+}
+
+.about-body p {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.2em;
+}
+
+.modal-header {
+	background-color: #1e88e5;
+}
+
+.modal-footer {
+	background-color: #1e88e5;
+}
+.modal-title {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	color: white;
 }
