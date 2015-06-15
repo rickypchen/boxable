@@ -6,4 +6,10 @@ class StoreController < ApplicationController
     @items = Item.all
     render json: @items
   end
+
+  def checkout
+  end
+
+
+
 end

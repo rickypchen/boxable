@@ -1,4 +1,41 @@
 var Cart = React.createClass({
+  checkoutClickHandler: function(){
+    if (this.props.signedIn) {
+      window.location.replace("http://localhost:3000/checkout");
+    } else {
+      $(".modal-overlay").slideDown();
+      $(".exit-modal").on("click", function(){
+        $(".modal-overlay").slideUp();
+      });
+
+      $("#sign-up").on("click", function(e){
+        e.preventDefault();
+        $(".sign-in-container").hide();
+        $(".sign-up-container").show();
+      })
+
+      $("#sign-in").on("click", function(e){
+        e.preventDefault();
+        $(".sign-in-container").show();
+        $(".sign-up-container").hide();
+      })
+
+      $(".sign-in-form").on("submit", function(){
+        var data = $(this).serialize();
+        $.ajax({
+          url: "/users/sign_in",
+          type: "POST",
+          data: data
+        })
+        .done(function(response){
+          console.log("success")
+        })
+        .fail(function(response){
+          console.log("failed")
+        })
+      });
+    }
+  },
   render: function(){
     var cartArray = [];
     var cart = this.props.cart;
@@ -27,7 +64,7 @@ var Cart = React.createClass({
                   </div>
 	      	<div className='checkout-container'>
                   <h3>Total: ${totalCheckoutPrice.toFixed(2)}</h3>
-	      	<button type="button" className="btn btn-warning" id="checkout-btn">Checkout</button>
+	      	<button type="button" onClick={this.checkoutClickHandler} className="btn btn-warning" id="checkout-btn">Checkout</button>
       	        </div>
 	      </div>
     );
