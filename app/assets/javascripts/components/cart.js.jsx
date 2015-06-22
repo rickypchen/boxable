@@ -75,11 +75,11 @@ var Cart = React.createClass({
           if (response[0] === "good") {
             console.log("got here");
             console.log(that.createInventory());
-            var itemIdAndQuantity = $(that.createInventory).serialize();
+            var itemIdAndQuantity = that.createInventory();
             $.ajax({
               url: "/box",
               type: "post",
-              data: itemIdAndQuantity
+              data: {"arr": itemIdAndQuantity}
             })
             .success(function(response){
               console.log(response);
@@ -88,7 +88,9 @@ var Cart = React.createClass({
             .fail(function(){
               console.log("fail");
             })
-            // debugger
+
+
+
             location.href = "http://localhost:3000/checkout";
 
           } else {
