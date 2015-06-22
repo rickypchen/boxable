@@ -40,6 +40,7 @@ var Cart = React.createClass({
           data: data
         })
         .success(function(response){
+          that.props.storeSelf.state.signedIn = true;
           console.log(response.responseText);
           if (response[0] === "good") {
             console.log("got here");
