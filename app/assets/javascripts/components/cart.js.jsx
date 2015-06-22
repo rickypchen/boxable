@@ -31,6 +31,7 @@ var Cart = React.createClass({
           data: data
         })
         .done(function(response){
+            $("#registration_errors").text("");
           for (var i = 0; i< response.length; i++){
             $("#registration_errors").append(
               "<li>" + response[i] + "</li>"
@@ -46,12 +47,17 @@ var Cart = React.createClass({
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-          url: "/users/sign_in",
+          url: "/users",
           type: "POST",
           data: data
         })
         .done(function(response){
-          console.log("success")
+            $("#sign_in_errors").text("");
+          for (var i = 0; i< response.length; i++){
+            $("#sign_in_errors").append(
+              "<li>" + response[i] + "</li>"
+              );
+          }
         })
         .fail(function(response){
           console.log("failed")

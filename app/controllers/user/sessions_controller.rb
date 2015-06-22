@@ -8,12 +8,11 @@ class User::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super
-    if resource.errors
-      
-      render json: resource.errors
+    @user = User.new(email: params[:user][:email], password: params[:user][:password])
+    if @user.save
+      render json: "good"
     else
-      render json: "it worked"
+      render json: @user.errors.full_messages
     end
   end
 

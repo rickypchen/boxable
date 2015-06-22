@@ -156,3 +156,7 @@ table.summary {
 #registration_errors {
 	color: red;
 }
+
+#sign_in_errors {
+	color: red;
+}

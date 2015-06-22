@@ -27,6 +27,7 @@
 
 
 			<%= form_for(:user, :url => session_path(:user), html: {class: "sign-in-form"}) do |f|%>
+			<ul id="sign_in_errors"></ul>
 			<label for="exampleInputEmail1">Email address</label>
 			<%= f.email_field :email, placeholder: "Email", class: "form-control" %>
 			<label for="exampleInputPassword1">Password</label>
