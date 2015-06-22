@@ -50,7 +50,7 @@ var store = React.createClass({
     $("#badge").html(this.countTotalQuantity());
   },
   getInitialState: function(){
-    return ({quantity: 0, items: [], cart: {}})
+    return ({quantity: 0, items: [], cart: {}, signedIn: false})
   },
   componentDidMount: function(){
     this.loadStore();
@@ -69,7 +69,7 @@ var store = React.createClass({
       }
         </div>
         <div className="cart">
-          <Cart signedIn={this.props.signedIn} cart={this.state.cart} />
+          <Cart storeSelf={self} signedIn={this.props.signedIn} cart={this.state.cart} />
         </div>
       </div>
       );

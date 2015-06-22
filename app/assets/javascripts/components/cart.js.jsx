@@ -1,8 +1,17 @@
 var Cart = React.createClass({
+  createInventory: function(){
+    var inventoryArray = [];
+    var cart = this.props.cart;
+    for (var key in cart){
+      inventoryArray.push([cart[key]["itemInfo"]["id"],cart[key]["quantity"]])
+    }
+    return inventoryArray;
+  },
   checkoutClickHandler: function(){
-    if (this.props.signedIn) {
-      window.location.replace("http://localhost:3000/checkout");
-    } else {
+    var that = this;
+    // if (this.props.signedIn) {
+    //   window.location.replace("http://localhost:3000/checkout");
+    // } else {
       $(".modal-overlay").show();
       $(".close").on("click", function(){
         $(".modal-overlay").hide();
@@ -20,25 +29,91 @@ var Cart = React.createClass({
         $(".sign-up-container").hide();
       })
 
-      $(".sign-in-form").on("submit", function(){
+      $(".sign-up-form").on("submit", function(e){
+        e.preventDefault();
+
+        console.log("yo");
+        var data = $(this).serialize();
+        $.ajax({
+          url: "/users",
+          type: "POST",
+          data: data
+        })
+        .success(function(response){
+          that.props.storeSelf.state.signedIn = true;
+          console.log(response.responseText);
+          if (response[0] === "good") {
+            console.log("got here");
+            location.href = "http://localhost:3000/checkout";
+
+          } else {
+            $("#registration_errors").text("");
+            for (var i = 0; i< response.length; i++){
+              $("#registration_errors").append(
+                "<li>" + response[i] + "</li>"
+                )
+            }
+          }
+        })
+        .fail(function(response){
+          console.log("fail")
+          console.log(response)
+        })
+      });
+
+      $(".sign-in-form").on("submit", function(e){
+        e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
           url: "/users/sign_in",
           type: "POST",
           data: data
         })
-        .done(function(response){
-          console.log("success")
+        .success(function(response){
+          that.props.storeSelf.state.signedIn = true;
+          console.log(response);
+          if (response[0] === "good") {
+            console.log("got here");
+            console.log(that.createInventory());
+            var itemIdAndQuantity = that.createInventory();
+            $.ajax({
+              url: "/box",
+              type: "post",
+              data: {"arr": itemIdAndQuantity}
+            })
+            .success(function(response){
+              console.log(response);
+              console.log("success");
+            })
+            .fail(function(){
+              console.log("fail");
+            })
+
+
+
+            location.href = "http://localhost:3000/checkout";
+
+          } else {
+            $("#sign_in_errors").text("");
+            for (var i = 0; i< response.length; i++){
+              $("#sign_in_errors").append(
+                "<li>" + response[i] + "</li>"
+                );
+            }
+          }
         })
         .fail(function(response){
+          console.log(response);
           console.log("failed")
+
         })
       });
-    }
+    // }
   },
   render: function(){
     var cartArray = [];
     var cart = this.props.cart;
+    console.log(cart)
     var totalCheckoutPrice = 0;
     for (var key in cart) {
       if (cart[key]["quantity"] > 0)
