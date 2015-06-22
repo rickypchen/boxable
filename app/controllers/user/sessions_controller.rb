@@ -8,10 +8,14 @@ class User::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    @user = User.new(email: params[:user][:email], password: params[:user][:password])
-    if @user.save
-      render json: "good"
+    p "in sign in route"
+    @user = User.find_by(email: params[:user][:email])
+    p @user
+    if params[:user][:password] != nil && @user.valid_password?(params[:user][:password]) 
+      p "password good"
+      render json: ["good"]
     else
+      p "password bad"
       render json: @user.errors.full_messages
     end
   end

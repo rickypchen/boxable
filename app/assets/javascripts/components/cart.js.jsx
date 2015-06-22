@@ -30,8 +30,10 @@ var Cart = React.createClass({
           type: "POST",
           data: data
         })
-        .done(function(response){
-            $("#registration_errors").text("");
+        .success(function(response){
+          console.log(response.responseText);
+         
+          $("#registration_errors").text("");
           for (var i = 0; i< response.length; i++){
             $("#registration_errors").append(
               "<li>" + response[i] + "</li>"
@@ -39,6 +41,7 @@ var Cart = React.createClass({
           }
         })
         .fail(function(response){
+          console.log("fail")
           console.log(response)
         })
       });
@@ -47,20 +50,29 @@ var Cart = React.createClass({
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-          url: "/users",
+          url: "/users/sign_in",
           type: "POST",
           data: data
         })
-        .done(function(response){
+        .success(function(response){
+          console.log(response);
+          if (response[0] === "good") {
+            console.log("got here");
+            location.href = "http://localhost:3000/checkout";
+
+          } else {
             $("#sign_in_errors").text("");
-          for (var i = 0; i< response.length; i++){
-            $("#sign_in_errors").append(
-              "<li>" + response[i] + "</li>"
-              );
+            for (var i = 0; i< response.length; i++){
+              $("#sign_in_errors").append(
+                "<li>" + response[i] + "</li>"
+                );
+            }
           }
         })
         .fail(function(response){
+          console.log(response);
           console.log("failed")
+
         })
       });
     }
