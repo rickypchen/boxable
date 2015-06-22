@@ -1,8 +1,17 @@
 var Cart = React.createClass({
+  createInventory: function(){
+    var inventoryArray = [];
+    var cart = this.props.cart;
+    for (var key in cart){
+      inventoryArray.push([cart[key]["itemInfo"]["id"],cart[key]["quantity"]])
+    }
+    return inventoryArray;
+  },
   checkoutClickHandler: function(){
-    if (this.props.signedIn) {
-      window.location.replace("http://localhost:3000/checkout");
-    } else {
+    var that = this;
+    // if (this.props.signedIn) {
+    //   window.location.replace("http://localhost:3000/checkout");
+    // } else {
       $(".modal-overlay").show();
       $(".close").on("click", function(){
         $(".modal-overlay").hide();
@@ -60,9 +69,25 @@ var Cart = React.createClass({
           data: data
         })
         .success(function(response){
+          that.props.storeSelf.state.signedIn = true;
           console.log(response);
           if (response[0] === "good") {
             console.log("got here");
+            console.log(that.createInventory());
+            var itemIdAndQuantity = $(that.createInventory).serialize();
+            $.ajax({
+              url: "/box",
+              type: "post",
+              data: itemIdAndQuantity
+            })
+            .success(function(response){
+              console.log(response);
+              console.log("success");
+            })
+            .fail(function(){
+              console.log("fail");
+            })
+            // debugger
             location.href = "http://localhost:3000/checkout";
 
           } else {
@@ -80,11 +105,12 @@ var Cart = React.createClass({
 
         })
       });
-    }
+    // }
   },
   render: function(){
     var cartArray = [];
     var cart = this.props.cart;
+    console.log(cart)
     var totalCheckoutPrice = 0;
     for (var key in cart) {
       if (cart[key]["quantity"] > 0)

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "store#index"
   get 'store/load_items' => 'store#load_items'
   get '/checkout' => 'store#checkout'
+  post '/box' => 'boxes#create'
 
   devise_for :users, controllers: {
     sessions: 'user/sessions',

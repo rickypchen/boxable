@@ -13,6 +13,7 @@ class User::SessionsController < Devise::SessionsController
     p @user
     if params[:user][:password] != nil && @user.valid_password?(params[:user][:password]) 
       p "password good"
+      session[:signed_in] = true
       render json: ["good"]
     else
       p "password bad"

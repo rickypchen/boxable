@@ -1,5 +1,10 @@
-<% if signed_in? %>
-check it out foo!
+<% if session[:signed_in] %>
+	<p style="padding: 200px">check it out foo!</p>
 <% else %>
 	sign_in
 <% end %>
+
+
+
+
+

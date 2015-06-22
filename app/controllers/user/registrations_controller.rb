@@ -12,6 +12,7 @@ class User::RegistrationsController < Devise::RegistrationsController
 
     @user = User.new(email: params[:user][:email], password: params[:user][:password])
     if @user.save
+      session[:signed_in] = true
       render json: ["good"]
     else
       render json: @user.errors.full_messages
