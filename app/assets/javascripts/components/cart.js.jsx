@@ -20,7 +20,30 @@ var Cart = React.createClass({
         $(".sign-up-container").hide();
       })
 
-      $(".sign-in-form").on("submit", function(){
+      $(".sign-up-form").on("submit", function(e){
+        e.preventDefault();
+
+        console.log("yo");
+        var data = $(this).serialize();
+        $.ajax({
+          url: "/users",
+          type: "POST",
+          data: data
+        })
+        .done(function(response){
+          for (var i = 0; i< response.length; i++){
+            $("#registration_errors").append(
+              "<li>" + response[i] + "</li>"
+              )
+          }
+        })
+        .fail(function(response){
+          console.log(response)
+        })
+      });
+
+      $(".sign-in-form").on("submit", function(e){
+        e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
           url: "/users/sign_in",

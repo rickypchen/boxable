@@ -152,3 +152,7 @@ table.summary {
 	font-weight: 700;
 	color: white;
 }
+
+#registration_errors {
+	color: red;
+}
