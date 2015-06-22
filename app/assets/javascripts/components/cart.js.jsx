@@ -32,12 +32,17 @@ var Cart = React.createClass({
         })
         .success(function(response){
           console.log(response.responseText);
-         
-          $("#registration_errors").text("");
-          for (var i = 0; i< response.length; i++){
-            $("#registration_errors").append(
-              "<li>" + response[i] + "</li>"
-              )
+          if (response[0] === "good") {
+            console.log("got here");
+            location.href = "http://localhost:3000/checkout";
+
+          } else {
+            $("#registration_errors").text("");
+            for (var i = 0; i< response.length; i++){
+              $("#registration_errors").append(
+                "<li>" + response[i] + "</li>"
+                )
+            }
           }
         })
         .fail(function(response){
