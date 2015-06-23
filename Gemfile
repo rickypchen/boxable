@@ -28,6 +28,10 @@ gem 'react-rails', '~> 1.0'
 gem 'simplecov', :require => false, :group => :test
 gem 'devise'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 group :development, :test do
 	gem 'spring'
   gem 'rspec-rails'
