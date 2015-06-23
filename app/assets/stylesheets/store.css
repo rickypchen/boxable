@@ -208,3 +208,37 @@ table.summary {
 #sign_in_errors {
 	color: red;
 }
+
+.checkout-banner {
+	padding-top: 120px;
+	padding-bottom: 30px;
+	text-align: center;
+	background-color: black;
+	color: white;
+	font-size: 1em;
+}
+
+.checkout-content h3 {
+	text-align: center;
+}
+
+.checkout-content {
+	width: 50%;
+	margin: 0 auto;
+}
+
+table.box-info {
+	float: left;
+	width: 45%;
+}
+
+.delivery_form {
+	width: 45%;
+	float: right;
+}
+
+.payment-button {
+	clear: both;
+	padding-top: 10px;
+	text-align: center;
+}

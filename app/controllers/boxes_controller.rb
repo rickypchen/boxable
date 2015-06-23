@@ -13,6 +13,12 @@ class BoxesController < ApplicationController
 		# render json: [200]
 	end
 
+	def deliver
+		delivery_info = params["box"]
+		box = Box.find(delivery_info["order_id"].to_i)
+		box.update_attributes(first_name: delivery_info["first_name"], last_name: delivery_info["last_name"], street_address: delivery_info["address"], city: delivery_info["city"], state: delivery_info["state"], zipcode: delivery_info["zipcode"])
+		redirect_to checkout_path
+	end
 
 
 end
