@@ -1,6 +1,6 @@
 class User::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
-
+prepend_before_filter :require_no_authentication, only: [:cancel ]
   # GET /resource/sign_in
   # def new
   #   super
@@ -8,15 +8,12 @@ class User::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    p "in sign in route"
     @user = User.find_by(email: params[:user][:email])
-    p @user
-    if params[:user][:password] != nil && @user.valid_password?(params[:user][:password]) 
-      p "password good"
-      session[:signed_in] = true
-      render json: ["good"]
+    if @user.nil?
+      render json: ["You must sign-up first"]
+    elsif params[:user][:password] != nil && @user.valid_password?(params[:user][:password])
+      render json: ["good", current_user.id]
     else
-      p "password bad"
       render json: @user.errors.full_messages
     end
   end
