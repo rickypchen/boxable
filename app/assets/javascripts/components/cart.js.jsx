@@ -71,28 +71,22 @@ var Cart = React.createClass({
         })
         .success(function(response){
           that.props.storeSelf.state.signedIn = true;
-          console.log(response);
+          console.log(response)
           if (response[0] === "good") {
-            console.log("got here");
-            console.log(that.createInventory());
             var itemIdAndQuantity = that.createInventory();
+            var user_id = response[1];
             $.ajax({
               url: "/box",
               type: "post",
-              data: {"arr": itemIdAndQuantity}
+              data: {"arr": itemIdAndQuantity, "user": user_id}
             })
             .success(function(response){
-              console.log(response);
               console.log("success");
             })
             .fail(function(){
               console.log("fail");
             })
-
-
-
-            location.href = "http://localhost:3000/checkout";
-
+          location.href = "http://localhost:3000/checkout";
           } else {
             $("#sign_in_errors").text("");
             for (var i = 0; i< response.length; i++){
