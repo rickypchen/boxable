@@ -1,5 +1,22 @@
 <% if session[:signed_in] %>
-	<p style="padding: 200px">check it out foo!</p>
+	<div style="padding: 200px">
+      <h1>Order Number: <%= @latest_order.id  %></h1>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+        </tr>
+
+          <% @items_ordered.each do |item, quantity| %>
+              <tr>
+        <td><%= item %><td>
+        <td><%= quantity %></td>
+        </tr>
+        <% end %>
+       </table>
+       <button>Check Out</button>
+      </div>
+
 <% else %>
 	sign_in
 <% end %>
