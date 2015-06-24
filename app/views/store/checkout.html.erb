@@ -18,6 +18,7 @@
             <td><%= quantity %></td>
           </tr>
         <% end %>
+        <h4>Total Amount: $<%= @total%></h4>
        </table>
        <div class="delivery_form">
        <%= form_for(:box, :url => deliver_path(:box), :html => {:id => "delivery_info"}) do |f| %>
