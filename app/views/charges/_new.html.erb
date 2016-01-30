@@ -1,6 +1,7 @@
 <%= form_tag charges_path do %>
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Your Care Package"
-          data-amount="500"></script>
+          data-description="Boxable Order"
+          data-amount="<%= @total * 100 %>"></script>
+>>>>>>> 7f5111e38b9d79d2d465dc5c14f23734b63f3ea7
 <% end %>
