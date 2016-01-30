@@ -1,4 +1,5 @@
 class StoreController < ApplicationController
+
   def index
   end
 
@@ -14,7 +15,5 @@ class StoreController < ApplicationController
       @items_ordered[Item.find(boxed_item.item_id).name] = boxed_item.quantity
     end
   end
-
-
 
 end

@@ -9,9 +9,7 @@ var Cart = React.createClass({
   },
   checkoutClickHandler: function(){
     var that = this;
-    // if (this.props.signedIn) {
-    //   window.location.replace("http://localhost:3000/checkout");
-    // } else {
+
       $(".modal-overlay").show();
       $(".close").on("click", function(){
         $(".modal-overlay").hide();
@@ -32,7 +30,6 @@ var Cart = React.createClass({
       $(".sign-up-form").on("submit", function(e){
         e.preventDefault();
 
-        console.log("yo");
         var data = $(this).serialize();
         $.ajax({
           url: "/users",
@@ -43,7 +40,21 @@ var Cart = React.createClass({
           that.props.storeSelf.state.signedIn = true;
           console.log(response.responseText);
           if (response[0] === "good") {
-            console.log("got here");
+
+            var itemIdAndQuantity = that.createInventory();
+            var user_id = response[1];
+            $.ajax({
+              url: "/box",
+              type: "post",
+              data: {"arr": itemIdAndQuantity, "user": user_id}
+            })
+            .success(function(response){
+              console.log("success");
+            })
+            .fail(function(){
+              console.log("failed to create a box for user");
+            })
+
             location.href = "http://localhost:3000/checkout";
 
           } else {
@@ -56,7 +67,7 @@ var Cart = React.createClass({
           }
         })
         .fail(function(response){
-          console.log("fail")
+          console.log("fail HERE")
           console.log(response)
         })
       });
@@ -117,7 +128,7 @@ var Cart = React.createClass({
 
     console.log(cartArray);
     console.log(this.props.cart);
-    
+
     return (
       <div className="cart" >
         <div className="inventory">
@@ -137,7 +148,7 @@ var Cart = React.createClass({
         </div>
       </div>
     );
-    
+
   }
 });
 
